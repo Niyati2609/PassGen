@@ -1,0 +1,174 @@
+<html>
+<head>
+<title >Password Generator</title>
+<style>
+*{font-size:30;color:white}
+body {background-color:#1C2A44;}
+
+.sizee input {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+border-radius: 50%;
+width: 2vw;
+height: 2vw;
+box-shadow: 0px 0px 5px #AAC5C6; 
+margin-right: 10px; 
+position: relative;
+transition: 0.2s all linear;
+transition: all 0.2s ease-in-out; 
+cursor: pointer;
+}
+
+.sizee input:checked {
+border: 0.6vw solid #344056;
+background-color: #686FFD;
+}
+
+.cont2{
+font-size: 30px;
+max-width: 600px;
+border: 0.6vw solid #344056;
+}
+
+.container{
+max-width: 600px;
+font-family: 'Segoe UI', Tahoma, Geneva,Verdana, sans-serif;
+font-size: 30px;
+border: 0.6vw solid #344056;
+}
+
+ul.boxs-container { 
+list-style: none; 
+padding: 20px;
+}
+
+ul.boxs-container li {
+display: inline-block;
+}
+
+ul.boxs-container li label {
+display: inline-block;
+background-color: #283241;
+border-radius: 25px;
+color: #B1B2CF;
+border: 2px solid #B1B2CF; 
+white-space: nowrap;
+margin: 3px 5px; 
+-webkit-touch-callout: none; 
+-webkit-user-select: none; 
+-moz-user-select: none; 
+-ms-user-select: none; 
+-webkit-tap-highlight-color: transparent; 
+transition: all .2s;
+user-select: none;
+padding: 8px 12px; 
+cursor: pointer;
+}
+
+ul.boxs-container li label:hover { 
+border: 1px solid #686FFD;
+}
+
+ul.boxs-container li
+input[type="checkbox"]:checked+label { 
+border: 1px solid #686FFD;
+background-color: #686FFD;
+color: #fff;
+transition: all .2s;
+
+}
+
+ul.boxs-container li input[type="checkbox"] {
+opacity: 0;
+display: absolute;
+position: absolute;
+}
+
+#submit{
+		  padding: 10px 20px;
+		  color: #727b8a;
+		  font-size: 16px;
+		  text-decoration: none;
+		  text-transform: uppercase;
+		  overflow: hidden;
+		  transition: .5s;
+		  letter-spacing: 4px;
+		  border: 1px solid #686FFD;
+		  margin: auto;
+		  font-weight:bold;
+		  border-radius: 15px;
+		}
+		#submit:hover {
+		  background: #686FFD;
+		  color: #fff;
+		  border-radius: 5px;
+		  box-shadow: 0 0 5px #8F7CEC, 0 0 25px #8F7CEC, 0 0 50px #8F7CEC, 0 0 100px #8F7CEC;
+		}
+
+</style>
+
+
+<script>
+function gen(){
+event.preventDefault();
+let s6= document.getElementById("s6");
+let s7= document.getElementById("s7");
+let s8= document.getElementById("s8");
+let s9= document.getElementById("s9");
+let lc= document.getElementById("lc");
+let uc= document.getElementById("uc");
+let di= document.getElementById("di");
+let msg= document.getElementById("msg");
+let si = 0;
+let text ="";
+if(s6.checked) 		si=6;
+else if(s7.checked) 	si=7;
+else if(s8.checked) 	si=8;
+else	 		si=9;
+
+if(lc.checked)		text =text +"abcdefghijklmnopqrstuvwxyz";
+if(uc.checked)		text =text +"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+if(di.checked)		text =text +"0123456789";
+
+let pw="";
+for(let i=1;i<=si;i++){
+let r = parseInt(Math.random()*text.length);
+pw=pw+text[r];
+}
+msg.innerHTML=pw;
+}
+</script>
+
+</head>
+<body>
+<center>
+<br/>
+<h1 style="font-family:Papyrus;font-size:40">Password Generator</h1>
+<div class="container">
+<h2>Select size of your password</h2>
+<form>
+<div class="sizee">
+<input type="radio" name="contact" value="s6" id="s6" />6 &nbsp;&nbsp;  
+<input type="radio" name="contact" value="s7" id="s7" />7 &nbsp;&nbsp;  
+<input type="radio" name="contact" value="s8" id="s8" />8 &nbsp;&nbsp;   
+<input type="radio" name="contact" value="s9" id="s9" />9 &nbsp;&nbsp;
+</div>
+<ul class="boxs-container">
+<li><input type="checkbox" id="lc" value="lc" checked><label style="font-size:25px;" for="lc">Lower Case</label></li>
+<li><input type="checkbox" id="uc" value="uc" ><label style="font-size:25px;" for="uc">Upper Case</label></li> 
+<li><input type="checkbox" id="di" value="di" ><label style="font-size:25px;" for="di">Digits</label></li> 
+</ul>
+<input type="submit" value="Generate" id="submit" onclick="gen()"/>
+
+</div>
+<br/>
+<div class="cont2">
+<h1 id="msg"></h1>
+</div>
+
+</form>
+
+</center>
+</body>
+</html>
